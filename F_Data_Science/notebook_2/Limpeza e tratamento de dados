@@ -1,0 +1,33 @@
+-> 80% do trabalho de um cientista de dados 
+-> Reduzir os custos de produção, selecionar melhores fornecedores, entender o fluxo da empresa
+
+-> Porque dados tem problemas ? 
+    - Sistemas de operações e bancos de dados sem restrições de entrada
+    - Atualizações diretas em bancos de dados
+    - Sistemas antigos, codificações diferentes (EBCDIC)
+    - Inconsistência nos processos de carga:
+        . Origem da informação é diversa, não padronizada
+        . Mudanças no processo
+        . Erros no Processo
+
+-> Operação vs Analítico
+    - Na operação o dado em seu formato individual não pode ser alterado para um valor padrão
+    - No analítico, o dado não tem valor individual, mas coletivo. Ele pode ser corrigido pelo "bem" do modelo
+    
+    -> Operação
+        - Cliente no plano de saúde tem data de nascimento faltante
+        - Não podemos preencher com a mediana, pois isso influencia o valor do plano
+    
+    -> Analítico
+        - Modelo para prever custo dos clientes para o plano de saúde
+        - Algoritmo não suporta valores faltantes
+        - Alterar uma idade faltante para a mediana
+            > Não vai afetar a operação
+            > Não vai causar enviesamento no modelo
+
+-> Problemas encontrados: 
+    - Duplicidades
+    - Consistência
+    - Completude
+    - Conformidade    (idade menor que 0, etc) 
+    - Integridade
