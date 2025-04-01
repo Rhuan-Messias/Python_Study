@@ -1,0 +1,80 @@
+
+[NEAT]
+fitness_criterion = max
+fitness_threshold = 1000
+pop_size = 100 # tamanho populacao
+reset_on_extinction = False #Verdadeiro cria espécie do 0
+
+[DefaultGenome]
+# node activation options
+activation_default = tanh
+activation_mutate_rate = 0.0 # se testa outra funcao que não tanh
+activation_options = tanh
+
+# node aggregation options
+aggregation_default = sum # x1*w1 + x2*w2 + bias...
+aggregation_mutate_rate = 0.0 #não vai usar outro metodo como multiplicar
+aggregation_options = sum
+
+# node bias options
+bias_init_mean = 0.0
+bias_init_stdev = 1.0
+bias_max_value = 30.0
+bias_min_value = -30.0
+bias_mutate_power = 0.5
+bias_mutate_rate = 0.7
+bias_replace_rate = 0.1
+
+#genome compatibility option - como o neat vai separar as espécies por semelhança
+compatibility_disjoint_coefficient = 1.0
+compatibility_weight_coefficient =0.5
+
+#connection add/remove rates
+conn_add_prob = 0.5
+conn_delete_prob = 0.5
+
+# connection enable options
+enable_default = True
+enabled_mutate_rate = 0.01 #probabilidade de haver mudança nas conexões do neuron
+
+feed_forward = True # o input é recebido e passado em direção ao output
+initial_connection = full
+
+#node add/remove rates
+node_add_prob = 0.2
+node_delete_prob = 0.2
+
+#network parameters - como é a rede neural
+num_hidden = 0 #o neat pode mutar sozinho, mas começa assim
+num_inputs = 3
+num_outputs = 1
+
+# node response options - numero que multiplica Z antes de somar o bias para formar y
+response_init_mean = 1.0 #como mutacoes sao 0, vai ser 1 o tempo todo
+response_init_stdev = 0.0
+response_max_value = 30.0
+response_min_value = -30.0
+response_mutate_power = 0.0 # porcentagem da mutacao
+response_mutate_rate = 0.0  # chance de mutacao
+response_replace_rate = 0.0 # chance de só mudar o numero, sem mutar
+
+# connection weight options
+weight_init_mean = 0.0
+weight_init_stdev = 1.0
+weight_max_value = 30
+weight_min_value = -30
+weight_mutate_power = 0.5
+weight_mutate_rate = 0.8
+weight_replace_rate = 0.1
+
+[DefaultSpeciesSet]
+compatibility_threshold = 3.0
+
+[DefaultStagnation]
+species_fitness_func = max
+max_stagnation = 20 # se durar 20 geracoes sem evoluir morre a especie
+species_elitism = 2 # deixa sobrar 2 para nao ter risco de começar do 0
+
+[DefaultReproduction]
+elitism = 2 #por especie 2 passaros vão passar para proxima geracao sem mutação
+survival_threshold = 0.2 #no maximo 20% da amostra da mesma especie, para permitir variabilidade genetica
