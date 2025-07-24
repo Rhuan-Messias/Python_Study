@@ -1,12 +1,37 @@
+"""
+módulo: pedidos.py
+
+Este módulo gerencia o processo de pedidos da loja, permitindo ao usuário:
+- Adicionar produtos ao carrinho de compras (pedido atual)
+- Listar os itens do pedido atual
+- Remover itens do pedido
+- Finalizar e salvar o pedido
+
+Ele utiliza a Fake Store API para obter produtos, além de ler produtos locais.
+As informações de pedidos finalizados são salvas em arquivos locais para simular persistência.
+
+Funções principais:
+- menu_pedidos()
+- adicionar_pedido()
+- fechar_pedido()
+- listar_pedidos()
+- remover_item_pedido()
+"""
+
 from datetime import datetime
 import manipulacaoArquivos
 import requests
 import json
 import interface
 
+# Lista global para armazenar temporariamente os itens do pedido atual
 listaPedido = []
 
 def menu_pedidos():
+    """
+    Exibe o menu de pedidos, permitindo ao usuário adicionar itens, 
+    finalizar o pedido, visualizar ou remover itens do pedido.
+    """
     while True:
         opcoes = [
             "Adicionar ao Pedido",
@@ -33,6 +58,10 @@ def menu_pedidos():
             interface.pausar()
 
 def adicionar_pedido():
+    """
+    Exibe os produtos disponíveis (via API + locais) e permite que o usuário
+    selecione um produto para adicionar ao pedido atual.
+    """
     global listaPedido
     interface.limpar_tela()
     try:
@@ -59,6 +88,11 @@ def adicionar_pedido():
     interface.pausar()
 
 def fechar_pedido():
+    """
+    Finaliza o pedido atual, solicitando dados do cliente,
+    e grava o pedido utilizando a função `gravarPedidos`.
+    Limpa a lista após finalizar.
+    """
     global listaPedido
     interface.limpar_tela()
     if not listaPedido:
@@ -75,6 +109,9 @@ def fechar_pedido():
     interface.pausar()
 
 def listar_pedidos():
+    """
+    Exibe os itens atualmente adicionados ao pedido.
+    """
     interface.limpar_tela()
     if not listaPedido:
         interface.mensagem_alerta("📭 Nenhum item adicionado.")
@@ -83,6 +120,10 @@ def listar_pedidos():
     interface.pausar()
 
 def remover_item_pedido():
+    """
+    Permite ao usuário remover um item da lista de pedidos atual.
+    Exibe os itens e solicita qual será removido.
+    """
     global listaPedido
     interface.limpar_tela()
     if not listaPedido:
